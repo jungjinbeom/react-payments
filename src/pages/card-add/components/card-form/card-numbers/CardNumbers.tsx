@@ -1,6 +1,6 @@
-import Input from '@/components/common/input/Input';
+import { Input } from '@/components/common';
 import { CARD_NUMBER_LIMIT } from '@/domain/constant';
-import { forwardRef, type RefObject } from 'react';
+import { type RefObject } from 'react';
 import useNumbers from './hook/useCardNumbers';
 
 const createHyphen = (value: string = '') => (value.length === CARD_NUMBER_LIMIT ? '-' : '');
@@ -9,9 +9,10 @@ type CardNumberProps = {
   nextFocus: RefObject<HTMLInputElement>;
 };
 
-const CardNumbers = forwardRef(({ nextFocus }: CardNumberProps) => {
+const CardNumbers = ({ nextFocus }: CardNumberProps) => {
   const { inputRef, cardNumbers, handleChange } = useNumbers({ nextFocus });
   const [second, third, fourth] = inputRef;
+
   const firstHypen = cardNumbers ? createHyphen(Object.values(cardNumbers)[0]) : '';
   const secondHypen = cardNumbers ? createHyphen(Object.values(cardNumbers)[1]) : '';
   const thridHypen = cardNumbers ? createHyphen(Object.values(cardNumbers)[2]) : '';
@@ -54,6 +55,6 @@ const CardNumbers = forwardRef(({ nextFocus }: CardNumberProps) => {
       />
     </>
   );
-});
+};
 
 export default CardNumbers;

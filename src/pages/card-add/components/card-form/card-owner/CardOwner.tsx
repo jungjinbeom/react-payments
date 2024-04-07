@@ -1,9 +1,9 @@
-import Input from '@/components/common/input/Input';
+import { Input } from '@/components/common';
 import { CARD_OWNER_NAME_LIMIT } from '@/domain/constant';
+import { forwardRef } from 'react';
 import useCardOwner from './hook/useCardOwner';
-import { type ForwardedRef, forwardRef } from 'react';
 
-const CardOwner = forwardRef((_props, ref: ForwardedRef<HTMLInputElement>) => {
+const CardOwner = forwardRef<HTMLInputElement>((_props, ref) => {
   const { ownerName = '', handleChange } = useCardOwner();
 
   return (

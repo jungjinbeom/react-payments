@@ -1,19 +1,18 @@
-import useCardContext from '@/provider/card-info-provider/hook/useCardContext';
-
-import useModalContext from '@/provider/modal-provider/hook/useModalContext';
-
-import CardForm from './components/card-form/CardForm';
-import { Card } from '@/components/card';
-import { PageTitle } from '@/components/common';
+import useCardContext from '@/provider/card-info-provider/hooks/useCardContext';
+import useModalContext from '@/provider/modal-provider/hooks/useModalContext';
 import useStepContext from '@/provider/step-provider/hook/useStepContext';
 
+import { Card } from '@/components/card';
+import { PageTitle } from '@/components/common';
+import CardForm from './components/card-form/CardForm';
+
 const AddCard = () => {
-  const { cardState } = useCardContext();
   const { navigate } = useStepContext();
+  const { cardState } = useCardContext();
+
   const { cardBrand, toggle } = useModalContext();
-  const goToPage = () => {
-    navigate('LIST');
-  };
+
+  const goToPage = () => navigate('LIST');
 
   return (
     <div className="app">

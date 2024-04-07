@@ -1,20 +1,16 @@
-import ButtonBox from '@/components/common/button-box/ButtonBox';
-import InputBox from '@/components/common/input-box/InputBox';
-import Container from '@/components/common/input-container/Container';
 import CardExpirationDate from './card-expiration-date/CardExpirationDate';
 import CardNumbers from './card-numbers/CardNumbers';
 import CardOwner from './card-owner/CardOwner';
 import CardPassword from './card-password/CardPassword';
 import CardSecurityCode from './card-security-code/CardSecurityCode';
+import { ButtonBox, Container, InputBox } from '@/components/common';
 
-import Button from '@/components/common/button/Button';
-
-import useCardContext from '@/provider/card-info-provider/hook/useCardContext';
-
-import useInputFocus from '../../hook/useInputFocus';
-import useModalContext from '@/provider/modal-provider/hook/useModalContext';
 import { isObjectFailed } from '@/domain/validate';
+
+import useCardContext from '@/provider/card-info-provider/hooks/useCardContext';
+import useModalContext from '@/provider/modal-provider/hooks/useModalContext';
 import useStepContext from '@/provider/step-provider/hook/useStepContext';
+import useInputFocus from '../../hook/useInputFocus';
 
 const REF_SIZE = 3;
 const CardForm = () => {
@@ -31,8 +27,6 @@ const CardForm = () => {
     const isValid = cardValidation();
     const isCardBrandVaild = isObjectFailed({ cardBrandName, color });
     if (isValid && isCardBrandVaild) {
-      // const id = myCardList.length + 1;
-      // handleCardState({ id });
       navigate('COMPLETE');
     }
   };
@@ -59,9 +53,9 @@ const CardForm = () => {
         <CardPassword ref={password} />
       </Container>
       <ButtonBox>
-        <Button type="button" className="button-text button-border-none" onClick={goToPage}>
+        <button type="button" className="button-text button-border-none" onClick={goToPage}>
           <span className="button-text">다음</span>
-        </Button>
+        </button>
       </ButtonBox>
     </>
   );

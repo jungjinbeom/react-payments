@@ -1,15 +1,18 @@
-import Input from '@/components/common/input/Input';
-import { CARD_SECURITY_CODE_LIMIT } from '@/domain/constant';
-import useSecurityCode from './hook/useSecurityCode';
-import { type ForwardedRef, forwardRef, RefObject } from 'react';
 import questionIcon from '@/assets/question.svg';
-import Tooltip from '@/components/common/tooltip/Tooltip';
+
+import { Input, Tooltip } from '@/components/common';
+
+import { CARD_SECURITY_CODE_LIMIT } from '@/domain/constant';
+
+import useSecurityCode from './hook/useSecurityCode';
+
+import { RefObject, forwardRef } from 'react';
 
 type CardSecurityCodeProps = {
   nextFocus: RefObject<HTMLInputElement>;
 };
-const CardSecurityCode = forwardRef(
-  ({ nextFocus }: CardSecurityCodeProps, ref: ForwardedRef<HTMLInputElement>) => {
+const CardSecurityCode = forwardRef<HTMLInputElement, CardSecurityCodeProps>(
+  ({ nextFocus }, ref) => {
     const { securityCode = '', handleScurityCode } = useSecurityCode({ nextFocus });
 
     return (

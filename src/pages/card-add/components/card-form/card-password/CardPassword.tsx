@@ -1,9 +1,9 @@
-import Input from '@/components/common/input/Input';
+import { Input } from '@/components/common';
 import useCardPassword from './hook/useCardPassword';
 import { CARD_PASSWORD_LIMIT } from '@/domain/constant';
-import { type ForwardedRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 
-const CardPassword = forwardRef((_props, ref: ForwardedRef<HTMLInputElement>) => {
+const CardPassword = forwardRef<HTMLInputElement>((_props, ref) => {
   const {
     inputRef,
     firstCardPassword = '',
