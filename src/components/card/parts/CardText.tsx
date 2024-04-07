@@ -1,11 +1,11 @@
 import classNames from 'classnames';
-import { type DetailedHTMLProps, type PropsWithChildren } from 'react';
+import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
-type BaseCardTextProps = DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+type BaseCardTextProps = HTMLAttributes<HTMLSpanElement>;
+
 type CardTextProps = {
   status: string;
-} & BaseCardTextProps &
-  PropsWithChildren;
+} & PropsWithChildren<BaseCardTextProps>;
 
 const CardText = ({ status, children }: CardTextProps) => (
   <span className={classNames(status === 'big' ? 'card-text__big' : 'card-text')}>{children}</span>

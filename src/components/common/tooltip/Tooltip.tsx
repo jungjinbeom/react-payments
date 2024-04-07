@@ -4,7 +4,7 @@ type TooltipType = {
   content: string;
 } & PropsWithChildren;
 
-const Tooltip = ({ content, children }: TooltipType) => {
+export const Tooltip = ({ content, children }: TooltipType) => {
   const [isShow, setIsShow] = useState(false);
   const mouseEnter = () => {
     setIsShow(true);
@@ -21,5 +21,3 @@ const Tooltip = ({ content, children }: TooltipType) => {
     </div>
   );
 };
-
-export default Tooltip;

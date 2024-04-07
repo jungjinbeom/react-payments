@@ -1,15 +1,14 @@
 import classNames from 'classnames';
-import { type DetailedHTMLProps, type HTMLAttributes, type PropsWithChildren } from 'react';
+import type { HTMLAttributes, PropsWithChildren } from 'react';
 
-type BaseContainerProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+type BaseContainerProps = HTMLAttributes<HTMLDivElement>;
 
 type ContainerProps = {
   title?: string;
   className?: string;
-} & BaseContainerProps &
-  PropsWithChildren;
+} & PropsWithChildren<BaseContainerProps>;
 
-const Container = ({ title, className, children }: ContainerProps) => (
+export const Container = ({ title, className, children }: ContainerProps) => (
   <div className={classNames('input-container', className)}>
     {title ? (
       <span title={title} className="input-title">
@@ -19,5 +18,3 @@ const Container = ({ title, className, children }: ContainerProps) => (
     {children}
   </div>
 );
-
-export default Container;

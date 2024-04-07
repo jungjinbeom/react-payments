@@ -1,6 +1,6 @@
-import { type DetailedHTMLProps, type HTMLAttributes } from 'react';
+import { type HTMLAttributes } from 'react';
 
-type BaseModalItemDot = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+type BaseModalItemDot = HTMLAttributes<HTMLDivElement>;
 
 type ModalItemDotProps = {
   onClick: () => void;

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { type ForwardedRef, type InputHTMLAttributes, forwardRef } from 'react';
+import { type InputHTMLAttributes, forwardRef } from 'react';
 
 export type BaseInputProps = InputHTMLAttributes<HTMLInputElement>;
 
@@ -8,11 +8,8 @@ type InputProps = {
   boxType?: 'input-basic' | 'input-underline';
 } & BaseInputProps;
 
-const Input = forwardRef(
-  (
-    { type = 'text', boxType = 'input-basic', className, ...props }: InputProps,
-    ref: ForwardedRef<HTMLInputElement>,
-  ) => <input type={type} className={classNames(boxType, className)} {...props} ref={ref} />,
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ type = 'text', boxType = 'input-basic', className, ...props }, ref) => (
+    <input type={type} className={classNames(boxType, className)} {...props} ref={ref} />
+  ),
 );
-
-export default Input;

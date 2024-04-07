@@ -15,7 +15,9 @@ type CardProps = {
 } & CardStateType &
   CardBrand;
 
-const Card = ({
+const REGEX = /[1-9]/gi;
+
+export const Card = ({
   ownerName = 'NAME',
   month,
   year = '',
@@ -25,6 +27,8 @@ const Card = ({
   cardBrandName,
   onClick,
 }: CardProps) => {
+  const cardNumber = `${cardNumbers?.first ?? ''} ${cardNumbers?.second ?? ''} ${cardNumbers?.third?.replace(REGEX, '*') ?? ''} ${cardNumbers?.fourth?.replace(REGEX, '*') ?? ''}`;
+
   const displayMonth = month ? `${month} / ` : '';
   const expirationDate = `${displayMonth}${year}`;
 
@@ -38,7 +42,7 @@ const Card = ({
           <Chip status={status} />
         </div>
         <CardBottom>
-          <CardNumbers status={status} {...cardNumbers} />
+          <CardNumbers status={status} cardNumber={cardNumber} />
           <div className="card-bottom__info">
             <CardText status={status}>{ownerName}</CardText>
             <CardText status={status}>{expirationDate || 'MM/YY'}</CardText>
@@ -48,5 +52,3 @@ const Card = ({
     </CardBox>
   );
 };
-
-export default Card;
