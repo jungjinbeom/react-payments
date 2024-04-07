@@ -1,8 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
-import CardOwner from './CardOwner';
-import '../../../../../../styles/input.css';
-import CardInfoProvider from '@/provider/card-info-provider/CardInfoProvider';
+
 import { Container } from '@/components/common/index';
+import CardOwner from './CardOwner';
+import CardInfoProvider from '@/provider/card-info-provider/CardInfoProvider';
+
+import '../../../../../../styles/input.css';
 
 const meta = {
   title: 'CardOnwer',

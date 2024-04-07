@@ -1,8 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
+
 import CardNumbers from './CardNumbers';
 import { Container, InputBox } from '@/components/common';
 import CardInfoProvider from '@/provider/card-info-provider/CardInfoProvider';
+
 import '../../../../../../styles/input.css';
+
 const meta = {
   title: 'CardNumbers',
   component: CardNumbers,
