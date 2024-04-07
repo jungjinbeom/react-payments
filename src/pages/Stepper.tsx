@@ -17,7 +17,9 @@ const StepperContent = {
 };
 const Stepper = () => {
   const { route } = useStepContext();
-  return StepperContent[route];
+  const Component = StepperContent[route] ?? null;
+
+  return Component;
 };
 
 export default Stepper;
