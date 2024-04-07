@@ -16,6 +16,7 @@ export type CardStateType = Partial<{
   year: string;
   nickname: string;
 }>;
+
 export type Route = 'CARD' | 'LIST' | 'COMPLETE';
 
 export type CardBrand = {

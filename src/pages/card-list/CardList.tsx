@@ -1,14 +1,13 @@
-import Card from '@/components/card/Card';
-import EmptyCard from '@/components/card/EmptyCard';
-import FlexCenter from '@/components/common/flex-center/FlexCenter';
-import PageTitle from '@/components/common/page-title/PageTitle';
-import { type Route } from '@/domain/type';
-import useCardContext from '@/provider/card-info-provider/hook/useCardContext';
+import { Card, EmptyCard } from '@/components/card';
+import { FlexCenter, PageTitle } from '@/components/common';
 
+import { type Route } from '@/domain/type';
+
+import useCardContext from '@/provider/card-info-provider/hooks/useCardContext';
 import useStepContext from '@/provider/step-provider/hook/useStepContext';
 
 const CardList = () => {
-  const { myCardList, handleCardState } = useCardContext();
+  const { myCardList, handleCardState, removeCard } = useCardContext();
   const { navigate } = useStepContext();
   const goToPage = (path: Route) => {
     navigate(path);
@@ -25,7 +24,7 @@ const CardList = () => {
             key={`${cardState.nickname}_${i}`}
             onClick={() => {
               handleCardState(cardState);
-
+              removeCard(i);
               goToPage('COMPLETE');
             }}
             {...cardState}

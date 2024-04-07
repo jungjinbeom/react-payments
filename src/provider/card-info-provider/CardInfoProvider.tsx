@@ -7,13 +7,16 @@ import {
 } from '@/domain/constant';
 import { type CardBrand, type CardStateType } from '@/domain/type';
 import { isFailed, isLimitFailed, isObjectFailed } from '@/domain/validate';
-import { createContext, useState, type PropsWithChildren, useCallback } from 'react';
+import { createContext, type PropsWithChildren } from 'react';
+import useCardInfo from './hooks/useCardInfo';
+import useCardList from './hooks/useCardList';
 
 type CardListType = CardStateType & CardBrand;
+
 type MyCardListType = {
   myCardList: CardListType[];
   addCard: (card: CardListType) => void;
-  // removeCard: (i: number) => void;
+  removeCard: (i: number) => void;
 };
 
 type CardInfoType = {
@@ -24,30 +27,20 @@ type CardInfoType = {
 } & MyCardListType;
 
 const initialContext: CardInfoType = {
-  cardState: {} as CardStateType,
+  cardState: {},
   myCardList: [],
   handleCardState: () => undefined,
   addCard: () => undefined,
   reset: () => undefined,
   cardValidation: () => false,
-  // removeCard: () => undefined,
+  removeCard: () => undefined,
 };
 
 export const CardInfoContext = createContext(initialContext);
 
 const CardInfoProvider = ({ children }: PropsWithChildren) => {
-  const [cardState, setCardState] = useState<CardStateType>({} as CardStateType);
-  const handleCardState = useCallback((data: CardStateType) => {
-    setCardState((prev) => ({ ...prev, ...data }));
-  }, []);
-
-  const reset = () => setCardState({});
-
-  const [myCardList, setMyCardList] = useState<CardListType[]>([]);
-  const addCard = (card: CardListType) => setMyCardList((prev) => [...prev, card]);
-  // const removeCard = (i: number) => {
-  //   setMyCardList(myCardList.filter((item) => item.id !== i));
-  // };
+  const { cardState, handleCardState, reset } = useCardInfo();
+  const { myCardList, addCard, removeCard } = useCardList();
 
   const cardValidation = () => {
     const {
@@ -80,7 +73,7 @@ const CardInfoProvider = ({ children }: PropsWithChildren) => {
         addCard,
         reset,
         cardValidation,
-        // removeCard,
+        removeCard,
       }}
     >
       {children}
