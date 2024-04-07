@@ -1,5 +1,5 @@
 import { type Route } from '@/domain/type';
-import { type PropsWithChildren, createContext, useState } from 'react';
+import { type PropsWithChildren, createContext, useState, useCallback } from 'react';
 
 type StepType = {
   route: Route;
@@ -15,9 +15,10 @@ export const StepContext = createContext(initialState);
 
 const StepProvider = ({ children }: PropsWithChildren) => {
   const [route, setRoute] = useState<Route>('CARD');
-  const navigate = (path: Route) => {
+
+  const navigate = useCallback((path: Route) => {
     setRoute(path);
-  };
+  }, []);
 
   return <StepContext.Provider value={{ route, navigate }}>{children}</StepContext.Provider>;
 };
