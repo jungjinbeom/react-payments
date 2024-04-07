@@ -1,4 +1,4 @@
-import useCardContext from '@/provider/card-info-provider/hook/useCardContext';
+import useCardContext from '@/provider/card-info-provider/hooks/useCardContext';
 import { type ChangeEvent } from 'react';
 
 const useCardNickName = () => {

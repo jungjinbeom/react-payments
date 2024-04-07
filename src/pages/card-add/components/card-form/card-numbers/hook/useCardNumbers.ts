@@ -1,7 +1,9 @@
 import { CARD_NUMBER_LIMIT } from '@/domain/constant';
-import { validCardNumber } from '@/domain/validate';
+import { isValidCardNumber } from '@/domain/validate';
+
 import useInputFocus from '@/pages/card-add/hook/useInputFocus';
-import useCardContext from '@/provider/card-info-provider/hook/useCardContext';
+import useCardContext from '@/provider/card-info-provider/hooks/useCardContext';
+
 import { RefObject, type ChangeEvent } from 'react';
 
 const REF_SIZE = 3;
@@ -9,6 +11,7 @@ const REF_SIZE = 3;
 type UseNumbers = {
   nextFocus: RefObject<HTMLInputElement>;
 };
+
 const useNumbers = ({ nextFocus }: UseNumbers) => {
   const {
     cardState: { cardNumbers },
@@ -20,7 +23,8 @@ const useNumbers = ({ nextFocus }: UseNumbers) => {
 
   const handleCardNumbers = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (validCardNumber(value)) {
+
+    if (isValidCardNumber(value)) {
       handleCardState({ cardNumbers: { ...cardNumbers, [name]: value } });
 
       if (name === 'first' && value.length === CARD_NUMBER_LIMIT) {

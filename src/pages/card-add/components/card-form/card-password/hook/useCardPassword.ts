@@ -1,7 +1,9 @@
 import { CARD_PASSWORD_LIMIT } from '@/domain/constant';
-import { validCardPassword } from '@/domain/validate';
+import { isValidCardPassword } from '@/domain/validate';
+
 import useInputFocus from '@/pages/card-add/hook/useInputFocus';
-import useCardContext from '@/provider/card-info-provider/hook/useCardContext';
+import useCardContext from '@/provider/card-info-provider/hooks/useCardContext';
+
 import { type ChangeEvent } from 'react';
 
 const REF_SIZE = 1;
@@ -17,7 +19,7 @@ const useCardPassword = () => {
   const handleCardPassword = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    if (validCardPassword(value)) {
+    if (isValidCardPassword(value)) {
       handleCardState({ [name]: value });
       if (name === 'firstCardPassword' && value.length === CARD_PASSWORD_LIMIT) {
         second.current?.focus();
