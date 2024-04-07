@@ -2,30 +2,22 @@ import ModalProvider from '@/provider/modal-provider/ModalProvider';
 import useStepContext from '@/provider/step-provider/hook/useStepContext';
 import { AddCard, CardList, CardRegisterComplete } from '.';
 
+const StepperContent = {
+  LIST: <CardList />,
+  CARD: (
+    <ModalProvider>
+      <AddCard />
+    </ModalProvider>
+  ),
+  COMPLETE: (
+    <ModalProvider>
+      <CardRegisterComplete />
+    </ModalProvider>
+  ),
+};
 const Stepper = () => {
   const { route } = useStepContext();
-
-  if (route === 'LIST') {
-    return <CardList />;
-  }
-
-  if (route === 'CARD') {
-    return (
-      <ModalProvider>
-        <AddCard />
-      </ModalProvider>
-    );
-  }
-
-  if (route === 'COMPLETE') {
-    return (
-      <ModalProvider>
-        <CardRegisterComplete />
-      </ModalProvider>
-    );
-  }
-
-  return <></>;
+  return StepperContent[route];
 };
 
 export default Stepper;
