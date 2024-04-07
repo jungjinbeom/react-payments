@@ -4,7 +4,7 @@ import { StepContext } from '../StepProvider';
 const useStepContext = () => {
   const stepContext = useContext(StepContext);
   if (!stepContext) {
-    throw new Error('라우터 컨텍스트 입니다!');
+    throw new Error('해당 Context는 StepProvider 하위에서만 사용해주세요!');
   }
 
   return stepContext;
