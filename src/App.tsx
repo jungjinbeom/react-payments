@@ -1,5 +1,5 @@
 import Stepper from './pages/Stepper';
-import CardInfoProvider from './pages/card-add/components/card-form/card-password/CardInfoProvider';
+import CardInfoProvider from './provider/card-info-provider/CardInfoProvider';
 
 import StepProvider from './provider/step-provider/StepProvider';
 
@@ -10,6 +10,7 @@ const App = () => (
         <Stepper />
       </StepProvider>
     </CardInfoProvider>
+    <div id="modal"></div>
   </div>
 );
 
